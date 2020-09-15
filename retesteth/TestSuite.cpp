@@ -20,7 +20,8 @@
 
 #include <dataObject/DataObject.h>
 #include <libdevcore/CommonIO.h>
-#include <libdevcore/SHA3.h>
+//#include <libdevcore/SHA3.h>
+#include <libdevcrypto/Hash.h>
 #include <retesteth/EthChecks.h>
 #include <retesteth/ExitHandler.h>
 #include <retesteth/Options.h>
@@ -395,7 +396,7 @@ void TestSuite::runAllTestsInFolder(string const& _testFolder) const
                 ETH_WARNING("Skipping " + file.stem().string() + " because --lowcpu option was specified.\n");
                 continue;
             }
-
+            //std::cout << "executeTest " + file.stem().string() + " emm-------.\n";
             testOutput.showProgress();
             if (threadVector.size() == maxAllowedThreads)
                 joinThreads(threadVector, false);

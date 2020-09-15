@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.9.3)
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/toolchain.cmake)
 
 include("./cmake/Hunter/HunterGate.cmake")
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 set(HUNTER_CONFIGURATION_TYPES Release)
 set(HUNTER_JOBS_NUMBER 4 CACHE STRING "Hunter jobs number")
 set(HUNTER_CACHE_SERVERS "https://github.com/ethereum/hunter-cache" CACHE STRING "Hunter cache servers")
@@ -37,9 +37,12 @@ list(APPEND CMAKE_MODULE_PATH ${ETH_CMAKE_DIR})
 include(EthOptions)
 include(EthDependencies)
 include(EthCompilerSettings)
-
+#include(ProjectBoost)
 include(ProjectSecp256k1)
 include(ProjectLibFF)
+include(ProjectTASSL)
+include(ProjectLevelDB)
+#include(ProjectCryptopp)
 configure_project()
 
 if(JSONCPP)

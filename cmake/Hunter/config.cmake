@@ -17,7 +17,8 @@ hunter_config(
     HTTP_CLIENT=NO
 )
 
-hunter_config(Boost VERSION 1.65.1)
+hunter_config(Boost VERSION 1.68.0-p0)
+#hunter_config(Boost VERSION 1.65.1)
 
 hunter_config(ethash VERSION 0.4.0
     URL https://github.com/chfast/ethash/archive/v0.4.0.tar.gz

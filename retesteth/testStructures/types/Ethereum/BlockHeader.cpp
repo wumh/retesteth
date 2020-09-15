@@ -3,7 +3,8 @@
 #include <libdevcore/Address.h>
 #include <libdevcore/CommonIO.h>
 #include <libdevcore/RLP.h>
-#include <libdevcore/SHA3.h>
+//#include <libdevcore/SHA3.h>
+#include <libdevcrypto/Hash.h>
 #include <retesteth/TestHelper.h>
 #include <retesteth/testStructures/Common.h>
 

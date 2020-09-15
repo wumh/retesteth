@@ -1,60 +1,88 @@
 /*
- This file is part of cpp-ethereum.
- 
- cpp-ethereum is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- cpp-ethereum is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with cpp-ethereum.  If not, see <http://www.gnu.org/licenses/>.
- */
+    This file is part of FISCO-BCOS.
+
+    FISCO-BCOS is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    FISCO-BCOS is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with FISCO-BCOS.  If not, see <http://www.gnu.org/licenses/>.
+*/
 /** @file AES.cpp
- * @author Alex Leverington <nessence@gmail.com>
- * @date 2014
+ * @author Asherli
+ * @date 2018
  */
 
 #include "AES.h"
+#include "Exceptions.h"
 #include <cryptopp/aes.h>
 #include <cryptopp/filters.h>
-#include <cryptopp/pwdbased.h>
 #include <cryptopp/modes.h>
+#include <cryptopp/pwdbased.h>
 #include <cryptopp/sha.h>
+#include <stdlib.h>
+#include <string>
 
+
+using namespace std;
 using namespace dev;
 using namespace dev::crypto;
 
-bytes dev::aesDecrypt(bytesConstRef _ivCipher, std::string const& _password, unsigned _rounds, bytesConstRef _salt)
+string dev::crypto::aesCBCEncrypt(const unsigned char* _plainData, size_t _plainDataSize,
+    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData)
 {
-	bytes pw = asBytes(_password);
+    string cipherData;
+    CryptoPP::AES::Encryption aesEncryption(_key, _keySize);
+    CryptoPP::CBC_Mode_ExternalCipher::Encryption cbcEncryption(aesEncryption, _ivData);
+    CryptoPP::StreamTransformationFilter stfEncryptor(
+        cbcEncryption, new CryptoPP::StringSink(cipherData));
+    stfEncryptor.Put(_plainData, _plainDataSize);
+    stfEncryptor.MessageEnd();
+    return cipherData;
+}
 
-	if (!_salt.size())
-		_salt = &pw;
+string dev::crypto::aesCBCDecrypt(const unsigned char* _cypherData, size_t _cypherDataSize,
+    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData)
+{
+    string decryptedData;
+    CryptoPP::AES::Decryption aesDecryption(_key, _keySize);
+    CryptoPP::CBC_Mode_ExternalCipher::Decryption cbcDecryption(aesDecryption, _ivData);
+    CryptoPP::StreamTransformationFilter stfDecryptor(
+        cbcDecryption, new CryptoPP::StringSink(decryptedData));
+    // stfDecryptor.Put( reinterpret_cast<const unsigned char*>( cipherData.c_str() ),cipherLen);
+    stfDecryptor.Put(_cypherData, _cypherDataSize);
+    stfDecryptor.MessageEnd();
+    return decryptedData;
+}
 
-	bytes target(64);
-	CryptoPP::PKCS5_PBKDF2_HMAC<CryptoPP::SHA256>().DeriveKey(target.data(), target.size(), 0, pw.data(), pw.size(), _salt.data(), _salt.size(), _rounds);
+string dev::crypto::aesCBCEncrypt(
+    const string& _plainData, const string& _key, const std::string& _ivData)
+{
+    return aesCBCEncrypt((const unsigned char*)_plainData.data(), _plainData.size(),
+        (const unsigned char*)_key.data(), _key.size(), (const unsigned char*)_ivData.data());
+}
 
-	try
-	{
-		CryptoPP::AES::Decryption aesDecryption(target.data(), 16);
-		auto cipher = _ivCipher.cropped(16);
-		auto iv = _ivCipher.cropped(0, 16);
-		CryptoPP::CBC_Mode_ExternalCipher::Decryption cbcDecryption(aesDecryption, iv.data());
-		std::string decrypted;
-		CryptoPP::StreamTransformationFilter stfDecryptor(cbcDecryption, new CryptoPP::StringSink(decrypted));
-		stfDecryptor.Put(cipher.data(), cipher.size());
-		stfDecryptor.MessageEnd();
-		return asBytes(decrypted);
-	}
-	catch (std::exception const& e)
-	{
-		// FIXME: Handle this error better.
-		std::cerr << e.what() << '\n';
-		return bytes();
-	}
+string dev::crypto::aesCBCDecrypt(
+    const string& _cypherData, const string& _key, const std::string& _ivData)
+{
+    return aesCBCDecrypt((const unsigned char*)_cypherData.data(), _cypherData.size(),
+        (const unsigned char*)_key.data(), _key.size(), (const unsigned char*)_ivData.data());
+}
+
+string dev::crypto::aesCBCEncrypt(const string& _plainData, const string& _key)
+{
+    string ivData(_key.substr(0, 16));
+    return aesCBCEncrypt(_plainData, _key, ivData);
+}
+
+string dev::crypto::aesCBCDecrypt(const string& _cypherData, const string& _key)
+{
+    string ivData(_key.substr(0, 16));
+    return aesCBCDecrypt(_cypherData, _key, ivData);
 }
