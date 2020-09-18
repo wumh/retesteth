@@ -67,7 +67,7 @@ bool dev::crypto::SM2Signature::isValid() const noexcept
     static const h256 s_zero;
 
     return (v >= h512(1) && r > s_zero && s > s_zero && r < s_max && s < s_max);
-}
+    }
 
 std::shared_ptr<crypto::Signature> dev::sm2SignatureFromRLP(RLP const& _rlp, size_t _start)
 {
@@ -88,7 +88,7 @@ std::shared_ptr<crypto::Signature> dev::sm2SignatureFromBytes(std::vector<unsign
     return std::make_shared<SM2Signature>(r, s, v);
 }
 
-std::shared_ptr<crypto::Signature> dev::sm2Sign(KeyPair const& _keyPair, h256 const& _hash)
+std::shared_ptr<crypto::SM2Signature> dev::sm2Sign(KeyPair const& _keyPair, h256 const& _hash)
 {
     string pri = toHex(bytesConstRef{_keyPair.secret().data(), 32});
     h256 r(0);

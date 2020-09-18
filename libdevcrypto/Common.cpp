@@ -118,6 +118,44 @@ Public dev::toPublic(Secret const& _secret)
     }
 }
 
+Public dev::toPublicCompressed(Secret const& _secret)
+{
+    // if (!g_BCOSConfig.SMCrypto())
+    // {
+    //     auto* ctx = getCtx();
+    //     secp256k1_pubkey rawPubkey;
+    //     // Creation will fail if the secret key is invalid.
+    //     if (!secp256k1_ec_pubkey_create(ctx, &rawPubkey, _secret.data()))
+    //         return {};
+    //     std::array<byte, 65> serializedPubkey;
+    //     size_t serializedPubkeySize = serializedPubkey.size();
+    //     secp256k1_ec_pubkey_serialize(ctx, serializedPubkey.data(), &serializedPubkeySize,
+    //         &rawPubkey, SECP256K1_EC_UNCOMPRESSED);
+    //     assert(serializedPubkeySize == serializedPubkey.size());
+    //     // Expect single byte header of value 0x04 -- uncompressed public key.
+    //     assert(serializedPubkey[0] == 0x04);
+    //     // Create the Public skipping the header.
+    //     return Public{&serializedPubkey[1], Public::ConstructFromPointer};
+
+
+    //     PublicCompressed serializedPubkey;
+    //     if (!toPublicKey(_secret, SECP256K1_EC_COMPRESSED, serializedPubkey.asArray()))
+    //         return {};
+
+    //     // Expect single byte header of value 0x02 or 0x03 -- compressed public key.
+    //     assert(serializedPubkey[0] == 0x02 || serializedPubkey[0] == 0x03);
+
+    //     return serializedPubkey;
+
+
+    // }
+    // else
+    // {
+        string pri = toHex(bytesConstRef{_secret.data(), 32});
+        string pub = SM2::getInstance().priToPubCompressed(pri);
+        return h512(fromHex(pub));
+    // }
+}
 KeyPair KeyPair::create()
 {
     while (true)

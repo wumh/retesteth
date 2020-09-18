@@ -5,6 +5,7 @@
 #include <libdevcrypto/Hash.h>
 #include <libdevcrypto/Common.h>
 #include <libdevcrypto/ECDSASignature.h>
+#include <libdevcrypto/SM2Signature.h>
 #include <retesteth/EthChecks.h>
 #include <retesteth/TestHelper.h>
 #include <retesteth/testStructures/Common.h>
@@ -61,6 +62,7 @@ void Transaction::fromDataObject(DataObject const& _data)
              {"v", {{DataType::String}, jsonField::Optional}},
              {"r", {{DataType::String}, jsonField::Optional}},
              {"s", {{DataType::String}, jsonField::Optional}},
+             {"k", {{DataType::String}, jsonField::Optional}},
              {"blockHash", {{DataType::String}, jsonField::Optional}},           // EthGetBlockBy transaction
              {"blockNumber", {{DataType::String}, jsonField::Optional}},         // EthGetBlockBy transaction
              {"from", {{DataType::String}, jsonField::Optional}},                // EthGetBlockBy transaction
@@ -80,6 +82,7 @@ void Transaction::fromRLP(dev::RLP const& _rlp)
     // 0 - nonce        3 - to      6 - v
     // 1 - gasPrice     4 - value   7 - r
     // 2 - gasLimit     5 - data    8 - s
+    // 9 - k
     DataObject trData;
     size_t i = 0;
     trData["nonce"] = rlpToString(_rlp[i++]);
@@ -92,6 +95,7 @@ void Transaction::fromRLP(dev::RLP const& _rlp)
     trData["v"] = rlpToString(_rlp[i++]);
     trData["r"] = rlpToString(_rlp[i++]);
     trData["s"] = rlpToString(_rlp[i++]);
+    trData["k"] = rlpToString(_rlp[i++]);
     fromDataObject(trData);
 }
 
@@ -127,7 +131,12 @@ void Transaction::buildVRS(VALUE const& _secret)
     stream.appendList(6);
     streamHeader(stream);
     dev::h256 hash(dev::sha3(stream.out()));
-    auto sigStruct = dev::ecdsaSign(dev::Secret(_secret.asString()), hash);
+    //use this for go-eth
+    // auto sigStruct = dev::ecdsaSign(dev::Secret(_secret.asString()), hash);
+    //use this for go-eth
+
+    auto sigStruct = dev::sm2Sign(dev::Secret(_secret.asString()), hash);
+
     //dev::Signature sig = dev::ecdsaSign(dev::Secret(_secret.asString()), hash);
 
     //dev::Signature_ sig = dev::sign(dev::Secret(_secret.asString()), hash);
@@ -135,25 +144,29 @@ void Transaction::buildVRS(VALUE const& _secret)
     //dev::SignatureStruct sigStruct = *(dev::SignatureStruct const*)(sPsig.get());
     ETH_FAIL_REQUIRE_MESSAGE(
         sigStruct->isValid(), TestOutputHelper::get().testName() + " Could not construct transaction signature!");
-
     // 27 because devcrypto signing donesn't count chain id
-    DataObject v = DataObject(dev::toCompactHexPrefixed(dev::u256(sigStruct->v + 27)));
+    // DataObject v = DataObject(dev::toCompactHexPrefixed(dev::u256(sigStruct->v + 27)));
     DataObject r = DataObject(dev::toCompactHexPrefixed(dev::u256(sigStruct->r)));
     DataObject s = DataObject(dev::toCompactHexPrefixed(dev::u256(sigStruct->s)));
-    m_v = spVALUE(new VALUE(v));
+    dev::h264 k2;
+    memcpy(k2.data()+1, &((sigStruct -> v).asArray()), 32);
+    k2[0] = 0x01;
+    m_v = spVALUE(new VALUE(28));
     m_r = spVALUE(new VALUE(r));
     m_s = spVALUE(new VALUE(s));
-}
+    m_k = dev::h264(k2);
+ }
 
 
 BYTES const Transaction::getSignedRLP() const
 {
     dev::RLPStream sWithSignature;
-    sWithSignature.appendList(9);
+    sWithSignature.appendList(10);
     streamHeader(sWithSignature);
     sWithSignature << v().asU256().convert_to<dev::byte>();
     sWithSignature << r().asU256();
     sWithSignature << s().asU256();
+    sWithSignature << m_k;
     return BYTES(dev::toHexPrefixed(sWithSignature.out()));
 }
 
@@ -186,6 +199,7 @@ const DataObject Transaction::asDataObject(ExportOrder _order) const
     out["v"] = m_v.getCContent().asString();
     out["r"] = m_r.getCContent().asString();
     out["s"] = m_s.getCContent().asString();
+    // out["k"] = m_k.getCContent().asString();
     if (_order == ExportOrder::ToolStyle)
     {
         out.performModifier(mod_removeLeadingZerosFromHexValues, {"data", "to"});
@@ -197,6 +211,7 @@ const DataObject Transaction::asDataObject(ExportOrder _order) const
         out.setKeyPos("r", 4);
         out.setKeyPos("s", 5);
         out.setKeyPos("v", 7);
+        out.setKeyPos("k", 8);
     }
     return out;
 }

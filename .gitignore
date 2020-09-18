@@ -11,8 +11,10 @@
 *.lai
 *.la
 *.a
-
+# log files
+*.log
 # VS stuff
+.vscode
 build
 ipch
 *.sdf

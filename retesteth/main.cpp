@@ -7,6 +7,8 @@
 #include <retesteth/testSuites/blockchain/BlockchainTests.h>
 #include <boost/test/included/unit_test.hpp>
 #include <thread>
+#include <libconfig/GlobalConfigure.h>
+#include <libdevcrypto/CryptoInterface.h>
 
 using namespace boost::unit_test;
 static std::ostringstream strCout;
@@ -120,7 +122,11 @@ int main(int argc, const char* argv[])
 
 	test::Options const& opt = test::Options::get();
 
-    // Special UnitTest
+    g_BCOSConfig.setUseSMCrypto(true);
+    crypto::initSMCrypto();
+
+
+
     for (int i = 0; i < argc; i++)
     {
         // replace test suite to custom tests

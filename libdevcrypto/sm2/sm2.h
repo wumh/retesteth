@@ -39,6 +39,8 @@ public:
     int verify(const unsigned char* _signData, size_t _sigLenth, const unsigned char* _originalData,
         size_t _originalLength, const unsigned char* _publicKey);
     std::string priToPub(const std::string& privateKey);
+    std::string priToPubCompressed(const std::string& privateKey);
+
     char* strlower(char* s);
     std::string ascii2hex(const char* chs, int len);
     static SM2& getInstance();

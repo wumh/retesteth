@@ -48,6 +48,8 @@ using Secrets = std::vector<Secret>;
 /// Convert a secret key into the public key equivalent.
 /// if convert failed, assertion failed
 Public toPublic(Secret const& _secret);
+Public toPublicCompressed(Secret const& _secret);
+
 
 /// Convert a public key to address.
 /// right160(sha3(_public.ref()))

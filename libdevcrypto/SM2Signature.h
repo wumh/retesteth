@@ -46,7 +46,7 @@ struct SM2Signature : public Signature
 }  // namespace crypto
 
 class KeyPair;
-std::shared_ptr<crypto::Signature> sm2Sign(KeyPair const& _keyPair, const h256& _hash);
+std::shared_ptr<crypto::SM2Signature> sm2Sign(KeyPair const& _keyPair, const h256& _hash);
 bool sm2Verify(h512 const& _pubKey, std::shared_ptr<crypto::Signature> _sig, const h256& _hash);
 h512 sm2Recover(std::shared_ptr<crypto::Signature> _sig, const h256& _hash);
 std::shared_ptr<crypto::Signature> sm2SignatureFromRLP(RLP const& _rlp, size_t _start);
