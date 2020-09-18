@@ -360,6 +360,62 @@ err:
     return pubKey;
 }
 
+<<<<<<< HEAD
+
+// Compressed 
+
+string SM2::priToPubCompressed(const string& pri)
+{
+    EC_KEY* sm2Key = NULL;
+    EC_POINT* pubPoint = NULL;
+    const EC_GROUP* sm2Group = NULL;
+    string pubKey = "";
+    BIGNUM start;
+    BIGNUM* res;
+    BN_CTX* ctx;
+    BN_init(&start);
+    ctx = BN_CTX_new();
+    char* pub = NULL;
+    // LOG(DEBUG)<<"pri:"<<pri;
+    res = &start;
+    BN_hex2bn(&res, (const char*)pri.c_str());
+    sm2Key = EC_KEY_new_by_curve_name(NID_sm2);
+    if (!EC_KEY_set_private_key(sm2Key, res))
+    {
+        //CRYPTO_LOG(ERROR) << "[SM2::priToPub] Error PriToPub EC_KEY_set_private_key";
+        goto err;
+    }
+
+    sm2Group = EC_KEY_get0_group(sm2Key);
+    pubPoint = EC_POINT_new(sm2Group);
+
+    if (!EC_POINT_mul(sm2Group, pubPoint, res, NULL, NULL, ctx))
+    {
+        //CRYPTO_LOG(ERROR) << "[SM2::priToPub] Error of PriToPub EC_POINT_mul";
+        goto err;
+    }
+
+    pub = EC_POINT_point2hex(sm2Group, pubPoint, POINT_CONVERSION_UNCOMPRESSED, ctx);
+    pubKey = pub;
+    pubKey = pubKey.substr(2, 128);
+    pubKey = strlower((char*)pubKey.c_str());
+    // LOG(DEBUG) << LOG_KV("pri:", pri) << LOG_KV(" pri size:", pri.size())
+    //            << LOG_KV("PriToPub:", pubKey) << LOG_KV("PriToPubLen:", pubKey.length());
+err:
+    if (pub)
+        OPENSSL_free(pub);
+    if (ctx)
+        BN_CTX_free(ctx);
+    if (sm2Key)
+        EC_KEY_free(sm2Key);
+    if (pubPoint)
+        EC_POINT_free(pubPoint);
+    return pubKey;
+}
+
+
+=======
+>>>>>>> c01a5a18205202197362269d2ac807828d26eb78
 char* SM2::strlower(char* s)
 {
     char* str;

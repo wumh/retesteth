@@ -12,10 +12,10 @@
             "args": [
                 "-t",
                 // // "GeneralStateTests",
-                "GeneralStateTests/stTransactionTest",
-            //    "GeneralStateTests/stExample",
+                // "GeneralStateTests/stTransactionTest",
+               "GeneralStateTests/stExample",
                 "--",
-            //    "--filltests",
+               "--filltests",
                 "--testpath",
                 "~/tests",
                 "--verbosity",
