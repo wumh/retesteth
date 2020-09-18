@@ -16,6 +16,8 @@
 # VS stuff
 .vscode
 build
+.vscode
+libdevcrypto_
 ipch
 *.sdf
 *.opensdf

@@ -15,7 +15,11 @@
                 // "GeneralStateTests/stTransactionTest",
                "GeneralStateTests/stExample",
                 "--",
+<<<<<<< HEAD
                 "--filltests",
+=======
+               "--filltests",
+>>>>>>> 054ba3f0061ce44d896f75b5c93e6fa843894a2a
                 "--testpath",
                 "~/tests",
                 "--verbosity",
