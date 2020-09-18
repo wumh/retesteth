@@ -360,7 +360,6 @@ err:
     return pubKey;
 }
 
-<<<<<<< HEAD
 
 // Compressed 
 
@@ -414,8 +413,6 @@ err:
 }
 
 
-=======
->>>>>>> c01a5a18205202197362269d2ac807828d26eb78
 char* SM2::strlower(char* s)
 {
     char* str;

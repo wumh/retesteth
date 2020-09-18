@@ -118,7 +118,6 @@ Public dev::toPublic(Secret const& _secret)
     }
 }
 
-<<<<<<< HEAD
 Public dev::toPublicCompressed(Secret const& _secret)
 {
     // if (!g_BCOSConfig.SMCrypto())
@@ -157,8 +156,6 @@ Public dev::toPublicCompressed(Secret const& _secret)
         return h512(fromHex(pub));
     // }
 }
-=======
->>>>>>> c01a5a18205202197362269d2ac807828d26eb78
 KeyPair KeyPair::create()
 {
     while (true)
