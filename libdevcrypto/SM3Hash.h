@@ -32,10 +32,13 @@ namespace dev
 /// Calculate SM3-256 hash of the given input and load it into the given output.
 /// @returns false if o_output.size() != 32.
 bool sm3(bytesConstRef _input, bytesRef o_output);
+std::string const cYellow = "\x1b[33m";
+std::string const cRed = "\x1b[31m";
 
 /// Calculate SM3-256 hash of the given input, returning as a 256-bit hash.
 inline h256 sm3(bytesConstRef _input)
 {
+    std::cout << cYellow << "----------------SM3_1 " <<  std::endl;
     h256 ret;
     sm3(_input, ret.ref());
     return ret;

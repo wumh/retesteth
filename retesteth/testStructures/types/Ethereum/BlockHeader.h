@@ -61,6 +61,8 @@ private:
     spBYTES m_extraData;
     spVALUE m_gasLimit;
     spVALUE m_gasUsed;
+    spVALUE m_pstotal;
+    spVALUE m_psAverage;
     spFH32 m_hash;
     spFH256 m_logsBloom;
     spFH32 m_mixHash;
@@ -68,6 +70,8 @@ private:
     spVALUE m_number;
     spFH32 m_parentHash;
     spFH32 m_receiptsRoot;
+    spFH32 m_tasksRoot;
+    spFH32 m_CreditHash;
     spFH32 m_sha3Uncles;
     spFH32 m_stateRoot;
     spVALUE m_timestamp;

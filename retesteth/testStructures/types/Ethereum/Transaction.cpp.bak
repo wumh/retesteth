@@ -50,7 +50,7 @@ void Transaction::fromDataObject(DataObject const& _data)
                 throw test::UpwardsException("Incorrect transaction `v` value: " + m_v.getCContent().asString());
             m_r = spVALUE(new VALUE(_data.atKey("r")));
             m_s = spVALUE(new VALUE(_data.atKey("s")));
-            m_k = spBYTES(new BYTES(_data.atKey("k")));
+            m_k = spBYTES(new BYTES(_data.atKey("data")));
         }
         requireJsonFields(_data, "Transaction " + _data.getKey(),
             {{"data", {{DataType::String}, jsonField::Required}},

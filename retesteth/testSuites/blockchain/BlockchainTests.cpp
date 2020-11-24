@@ -217,6 +217,7 @@ BOOST_AUTO_TEST_CASE(stSolidityTest) {}
 BOOST_AUTO_TEST_CASE(stSpecialTest) {}
 BOOST_AUTO_TEST_CASE(stSystemOperationsTest) {}
 BOOST_AUTO_TEST_CASE(stTransactionTest) {}
+BOOST_AUTO_TEST_CASE(stDebug) {}
 BOOST_AUTO_TEST_CASE(stTransitionTest) {}
 BOOST_AUTO_TEST_CASE(stWalletTest) {}
 

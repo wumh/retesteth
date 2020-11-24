@@ -79,12 +79,18 @@ void TestBlockchain::generateBlock(
         // In the same order as on remote block has returned after mining
         typedef std::tuple<spTransaction, bool> testTrInfo;
         std::map<FH32, testTrInfo> testTransactionMap;
-        for (auto const& tr : _block.transactions())
-            testTransactionMap[tr.tr().hash()] = {spTransaction(new Transaction(tr.tr())), tr.isMarkedInvalid()};
+         for (auto const& tr : _block.transactions())
+            {
+            auto ha = tr.tr().hash();
+            std::cout << "hash for _block is\t" << ha.asString() << std::endl;
 
+            testTransactionMap[ha] = {spTransaction(new Transaction(tr.tr())), tr.isMarkedInvalid()};
+            }
         for (auto const& remoteTr : minedBlock.getCContent().transactions())
         {
-            if (testTransactionMap.count(remoteTr.hash()))
+            auto ha1 = remoteTr.hash();
+            std::cout << "hash for minedBlock is\t" << ha1.asString() << std::endl;
+            if (testTransactionMap.count(ha1))
             {
                 bool isMarkedInvalid = std::get<1>(testTransactionMap.at(remoteTr.hash()));
                 if (!isMarkedInvalid)

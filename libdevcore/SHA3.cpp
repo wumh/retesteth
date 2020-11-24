@@ -33,6 +33,8 @@ namespace dev
 
 h256 EmptySHA3 = sha3(bytesConstRef());
 h256 EmptyListSHA3 = sha3(rlpList());
+std::string const cYellow = "\x1b[33m";
+std::string const cRed = "\x1b[31m";
 
 namespace keccak
 {
@@ -212,6 +214,7 @@ defsha3(512)
 
 bool sha3(bytesConstRef _input, bytesRef o_output)
 {
+    std::cout << cYellow << "----------------sha3 size is " << _input.size() <<  std::endl;
 	// FIXME: What with unaligned memory?
 	if (o_output.size() != 32)
 		return false;

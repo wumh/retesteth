@@ -11,21 +11,33 @@
             "program": "/home/wumh/1/retesteth/build/retesteth/retesteth",
             "args": [
                 "-t",
-                // // "GeneralStateTests",
+                // "GeneralStateTests/stCallCodes",
+                // "GeneralStateTests/stPreCompiledContracts",
                 // "GeneralStateTests/stTransactionTest",
-               "GeneralStateTests/stExample",
+                // "GeneralStateTests/stDebug",
+                // "GeneralStateTests",
+            //    "GeneralStateTests/stExample",
+                "BlockchainTests/TransitionTests/bcEIP158ToByzantium",
+
                 "--",
-<<<<<<< HEAD
                 "--filltests",
-=======
-               "--filltests",
->>>>>>> 054ba3f0061ce44d896f75b5c93e6fa843894a2a
                 "--testpath",
-                "~/tests",
+                // "~/tests",
+                "~/9-nl/tests",
+                "--clients",
+                "default",
+                "--singletest",
+                "ByzantiumTransition1",
+                // "--stderr",
+                // "--all",
+                // "--lowcpu",
+                // "--travisout",
+                // "--vmtrace",
                 "--verbosity",
                 "6",
                 // ">",
-                // "~/2_debug_error.log"
+                // "~/2_debug_error.log",
+                // "2>&1"
 
                 ],
             "stopAtEntry": false,

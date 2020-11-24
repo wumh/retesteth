@@ -73,13 +73,9 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp",
-<<<<<<< HEAD
         "variant": "cpp",
         "csetjmp": "cpp",
         "shared_mutex": "cpp",
         "*.in": "cpp"
-=======
-        "variant": "cpp"
->>>>>>> 054ba3f0061ce44d896f75b5c93e6fa843894a2a
     }
 }

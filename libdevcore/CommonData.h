@@ -188,6 +188,10 @@ inline std::string toCompactHexPrefixed(u256 _val, unsigned _min = 0)
 {
 	return toHexPrefixed(toCompactBigEndian(_val, _min));
 }
+inline std::string toCompactHexPrefixed264(u264 _val, unsigned _min = 0)
+{
+	return toHexPrefixed(toCompactBigEndian(_val, _min));
+}
 
 // Algorithms for string and string-like collections.
 

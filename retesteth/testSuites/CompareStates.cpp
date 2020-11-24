@@ -241,7 +241,7 @@ void compareStates(StateBase const& _stateExpect, State const& _statePost)
             result = accountCompareResult;
     }
     if (result != CompareResult::Success)
-        ETH_ERROR_MESSAGE("CompareStates failed with errors: " + CompareResultToString(result));
+        ETH_ERROR_MESSAGE("CompareStates failed with errors_1: " + CompareResultToString(result));
 }
 
 string CompareResultToString(CompareResult res)

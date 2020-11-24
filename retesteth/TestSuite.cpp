@@ -396,7 +396,7 @@ void TestSuite::runAllTestsInFolder(string const& _testFolder) const
                 ETH_WARNING("Skipping " + file.stem().string() + " because --lowcpu option was specified.\n");
                 continue;
             }
-            //std::cout << "executeTest " + file.stem().string() + " emm-------.\n";
+            std::cout << "executeTest " + file.stem().string() + " emm-------.\n";
             testOutput.showProgress();
             if (threadVector.size() == maxAllowedThreads)
                 joinThreads(threadVector, false);
@@ -459,6 +459,7 @@ void TestSuite::executeTest(string const& _testFolder, fs::path const& _testFile
         TestOutputHelper::get().setCurrentTestInfo(TestInfo("TestSuite::executeTest"));
         RPCSession::sessionStart(TestOutputHelper::getThreadID());
         TestOutputHelper::get().setCurrentTestFile(_testFileName);
+        // std::cout << "_testFileName " + _testFileName.string() + " emm------------------.\n";
         fs::path const boostRelativeTestPath = fs::relative(_testFileName, getTestPath());
         string testname = _testFileName.stem().string();
         bool isCopySource = false;
