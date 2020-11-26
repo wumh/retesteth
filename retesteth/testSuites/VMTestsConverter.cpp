@@ -107,7 +107,6 @@ DataObject VMTestConverterSuite::doTests(DataObject const& _input, TestSuiteOpti
         VMTestFiller vmtest(_input);
         for (VMTestInFiller const& test : vmtest.tests())
         {
-            std::cout << "here5" << std::endl;
             TestOutputHelper::get().setCurrentTestName(test.testName());
             TestOutputHelper::get().setCurrentTestInfo(TestInfo("Converting to BlockchainTestFiller"));
 
@@ -120,20 +119,10 @@ DataObject VMTestConverterSuite::doTests(DataObject const& _input, TestSuiteOpti
 
             // Prepare genesisBlockHeader
             bcTestFiller["genesisBlockHeader"] = getGenesisTemplate().asDataObject();
-                        std::cout << "here6" << std::endl;
-
             bcTestFiller["genesisBlockHeader"]["coinbase"] = test.Env().currentCoinbase().asString();
-                        std::cout << "here7" << std::endl;
-
             bcTestFiller["genesisBlockHeader"]["difficulty"] = test.Env().currentDifficulty().asString();
-                        std::cout << "here8" << std::endl;
-
             bcTestFiller["genesisBlockHeader"]["gasLimit"] = test.Env().currentGasLimit().asString();
-                        std::cout << "here9" << std::endl;
-
             bcTestFiller["genesisBlockHeader"]["timestamp"] = VALUE(0).asString();
-                        std::cout << "here10" << std::endl;
-
 
             // Disable mining
             bcTestFiller["sealEngine"] = sealEngineToStr(SealEngine::NoProof);
