@@ -20,9 +20,11 @@
                 // "BlockchainTests",
                 // "BlockchainTests/TransitionTests/bcEIP158ToByzantium",
                 // "BlockchainTests/TransitionTests",
-                "BlockchainTests/ValidBlocks",
+                // "BlockchainTests/ValidBlocks",
                 // "BlockchainTests/ValidBlocks/bcBlockGasLimitTest",
                 // "BlockchainTests/ValidBlocks/bcValidBlockTest",
+                // "BlockchainTests/ValidBlocks/vmArithmeticTest",
+                "BlockchainTests/ValidBlocks/VMTests/vmArithmeticTest",
                 
 
                 "--",
@@ -32,6 +34,7 @@
                 "~/9-nl/tests",
                 "--clients",
                 "default",
+                // "t8ntool",
                 // "--singletest",
                 // "SimpleTx3LowS",
                 // "ByzantiumTransition",
@@ -45,7 +48,9 @@
                 "6",
                 // ">",
                 // "~/2_debug_error.log",
-                // "2>&1"
+                // "2>&1",
+                
+
 
                 ],
             "stopAtEntry": false,

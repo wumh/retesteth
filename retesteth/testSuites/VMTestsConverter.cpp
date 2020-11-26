@@ -74,6 +74,13 @@ BlockHeader getGenesisTemplate()
     genesisBlockHeader["stateRoot"] = "0xf99eb1626cfa6db435c0836235942d7ccaa935f1ae247d3f1c21e495685f903a";
     genesisBlockHeader["transactionsTrie"] = "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421";
     genesisBlockHeader["uncleHash"] = "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347";
+    
+    genesisBlockHeader["pstotal"] = "0x00";
+    genesisBlockHeader["psAverage"] = "0x00";
+    // genesisBlockHeader["number"] = "0x00";
+    // genesisBlockHeader["receiptTrie"] = "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421";
+    genesisBlockHeader["tasksRoot"] = "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421";
+    genesisBlockHeader["CreditHash"] = "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421";
     return BlockHeader(genesisBlockHeader);
 }
 
@@ -100,6 +107,7 @@ DataObject VMTestConverterSuite::doTests(DataObject const& _input, TestSuiteOpti
         VMTestFiller vmtest(_input);
         for (VMTestInFiller const& test : vmtest.tests())
         {
+            std::cout << "here5" << std::endl;
             TestOutputHelper::get().setCurrentTestName(test.testName());
             TestOutputHelper::get().setCurrentTestInfo(TestInfo("Converting to BlockchainTestFiller"));
 
@@ -112,10 +120,20 @@ DataObject VMTestConverterSuite::doTests(DataObject const& _input, TestSuiteOpti
 
             // Prepare genesisBlockHeader
             bcTestFiller["genesisBlockHeader"] = getGenesisTemplate().asDataObject();
+                        std::cout << "here6" << std::endl;
+
             bcTestFiller["genesisBlockHeader"]["coinbase"] = test.Env().currentCoinbase().asString();
+                        std::cout << "here7" << std::endl;
+
             bcTestFiller["genesisBlockHeader"]["difficulty"] = test.Env().currentDifficulty().asString();
+                        std::cout << "here8" << std::endl;
+
             bcTestFiller["genesisBlockHeader"]["gasLimit"] = test.Env().currentGasLimit().asString();
+                        std::cout << "here9" << std::endl;
+
             bcTestFiller["genesisBlockHeader"]["timestamp"] = VALUE(0).asString();
+                        std::cout << "here10" << std::endl;
+
 
             // Disable mining
             bcTestFiller["sealEngine"] = sealEngineToStr(SealEngine::NoProof);
