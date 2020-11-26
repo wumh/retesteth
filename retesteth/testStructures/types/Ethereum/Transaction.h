@@ -17,7 +17,7 @@ struct Transaction : GCP_SPointerBase
     Transaction(BYTES const&);
     Transaction(dev::RLP const&);
     BYTES const& data() const { return m_data.getCContent(); }
-    BYTES const& k() const { return m_k.getCContent(); }
+    
     VALUE const& gasLimit() const { return m_gasLimit.getCContent(); }
     VALUE const& gasPrice() const { return m_gasPrice.getCContent(); }
     VALUE const& nonce() const { return m_nonce.getCContent(); }
@@ -32,6 +32,7 @@ struct Transaction : GCP_SPointerBase
     VALUE const& v() const { return m_v.getCContent(); }
     VALUE const& r() const { return m_r.getCContent(); }
     VALUE const& s() const { return m_s.getCContent(); }
+    BYTES const& k() const { return m_k.getCContent(); }
     //BYTES const& k() const { return m_k.getCContent(); }
     FH32 hash() const;
 

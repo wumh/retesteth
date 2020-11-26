@@ -169,7 +169,7 @@ DataObject RPCImpl::rpcCall(
     string reply = m_socket.sendRequest(request, validator);
     ETH_TEST_MESSAGE("Reply: `" + reply + "`");
 
-    DataObject result = ConvertJsoncppStringToData(reply, string(), true);
+    DataObject result = ConvertJsoncppStringToData(reply, string(), false);
     if (result.count("error"))
         result["result"] = "";
 

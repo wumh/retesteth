@@ -1,7 +1,10 @@
 #include <dataObject/ConvertFile.h>
 #include <dataObject/Exception.h>
+#include <iostream> 
 // Manually construct dataobject from file string content
 // bacuse Json::Reader::parse has a memory leak
+
+using namespace std;
 
 namespace dataobject
 {
@@ -122,6 +125,7 @@ bool readDigit(string const& _input, size_t& _i, int& _result)
 bool checkExcessiveComa(string const& _input, size_t _i)
 {
     if (_i < 1)
+   
         return false;
     size_t reader = _i - 1;
     while (isEmptyChar(_input[reader]) && reader != 0)
@@ -145,7 +149,12 @@ DataObject ConvertJsoncppStringToData(
     auto printDebug = [](string const& _debug) { return "\n\"------\n" + _debug + "\n\"------"; };
     for (size_t i = 0; i < _input.length(); i++)
     {
-        // std::cerr << root.asJson() << std::endl;
+        // if(i>2064 && i<2070)
+        // {
+        // std::cout << i << std::endl;
+        // std::cout << printDebug(debug) << std::endl;
+        // std::cout << root.asJson() << std::endl;
+        // }
         bool isSeenCommaBefore = checkExcessiveComa(_input, i);
         i = stripSpaces(_input, i);
         if (i == _input.length())

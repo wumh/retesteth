@@ -16,7 +16,10 @@ BlockchainTestFillerTransaction::BlockchainTestFillerTransaction(DataObject cons
         DataObject tmpD = _data;
         tmpD.removeKey("data");
         tmpD.removeKey("to");
+        // tmpD.removeKey("k");
         tmpD.performModifier(mod_valueToCompactEvenHexPrefixed);
+        if (tmpD.count("k") && _data.count("k"))
+        tmpD["k"] = _data.atKey("k");
 
         // fix 0x prefix on 'to' key
         DataObject dTo = _data.atKey("to");

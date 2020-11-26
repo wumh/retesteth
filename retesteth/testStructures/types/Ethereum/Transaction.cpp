@@ -176,26 +176,26 @@ dev::RLPStream const Transaction::asRLPStream() const
 {
     dev::RLPStream out;
     int k_size = k().asString().size();
-    printf("----------------------------------%d\n",k_size);
+    printf("size of k is  ----------------------------------%d\n",k_size);
 
-     if (k_size!=2)
-    {
+    //  if (k_size!=2)
+    // {
         out.appendList(10);
-    }
-    else
-    {
-        out.appendList(9);
-    }
+    // }
+    // else
+    // {
+    //     out.appendList(9);
+    // }
     
     // out.appendList(10);
     streamHeader(out);
     out << v().asU256().convert_to<dev::byte>();
     out << r().asU256();
     out << s().asU256();
-    if (k_size!=2)
-    {
+    // if (k_size!=2)
+    // {
         out << test::sfromHex(k().asString());
-    }
+    // }
     
     return out;
 }

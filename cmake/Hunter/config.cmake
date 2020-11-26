@@ -16,7 +16,7 @@ hunter_config(
     HTTP_SERVER=NO
     HTTP_CLIENT=NO
 )
-
+#hunter_config(Boost VERSION 1.73.0)
 hunter_config(Boost VERSION 1.68.0-p0)
 #hunter_config(Boost VERSION 1.65.1)
 
