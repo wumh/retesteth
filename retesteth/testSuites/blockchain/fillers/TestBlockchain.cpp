@@ -132,6 +132,9 @@ GCP_SPointer<EthGetBlockBy> TestBlockchain::mineBlock(
     ETH_LOGC("MINE BLOCK: " + m_sDebugString, 6, LogColor::YELLOW);
     m_session.test_mineBlocks(1);
     VALUE latestBlockNumber(m_session.eth_blockNumber());
+    
+
+    
 
     auto checkTransactions = [](size_t _trInBlocks, size_t _trInTest, size_t _trAllowedToFail) {
         ETH_ERROR_REQUIRE_MESSAGE(_trInBlocks == _trInTest - _trAllowedToFail,
@@ -172,6 +175,9 @@ GCP_SPointer<EthGetBlockBy> TestBlockchain::mineBlock(
             new EthGetBlockBy((m_session.eth_getBlockByNumber(latestBlockNumber, Request::FULLOBJECTS))));
         _rawRLP = remoteBlock.getCContent().getRLPHeaderTransactions();
     }
+    std::cout << "_trInBlocks=" << remoteBlock.getContent().transactions().size() << std::endl;
+    std::cout << "_trInTest=" << _blockInTest.transactions().size() << std::endl;
+    std::cout << "_trAllowedToFail=" << _blockInTest.invalidTransactionCount() << std::endl;
 
     checkTransactions(remoteBlock.getContent().transactions().size(), _blockInTest.transactions().size(),
         _blockInTest.invalidTransactionCount());

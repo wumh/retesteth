@@ -326,7 +326,7 @@ BOOST_AUTO_TEST_CASE(dataobject_readJson7)
                 "storage" : {
                 }
             },
-            "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
+            "0x8eC33b54fde22a01ff0A15AB8FaF88Ff3697D89e" : {
                 "nonce" : "0x01",
                 "storage" : {
                 }
@@ -335,7 +335,7 @@ BOOST_AUTO_TEST_CASE(dataobject_readJson7)
         "pre" : {
             "0x095e7baea6a6c7c4c2dfeb977efac326af552d87" : {
             },
-            "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" : {
+            "0x8eC33b54fde22a01ff0A15AB8FaF88Ff3697D89e" : {
             }
         },
         "sealEngine" : "NoProof"
@@ -344,7 +344,7 @@ BOOST_AUTO_TEST_CASE(dataobject_readJson7)
     )";
 
     string const res =
-        R"({"name":{"_info":{"comment":"A tesesult","filledwith":"testee5c"},"blocks":[{"blockHeader":{"difficulty":"0x020000","extraData":""},"rlp":"0xf90262f0","transactions":[{"data":"0x","value":"0x0186a0"}],"uncleHeaders":[]}],"genesisBlockHeader":{"number":"0x00"},"genesisRLP":"0xf9c6f04171167ec0c0","lastblockhash":"0x00606595b80acde5","network":"Homestead","postState":{"0x095e7baea6a6c7c4c2dfeb977efac326af552d87":{"storage":{"0x00":"0x02"}},"0x2adc25665018aa1fe0e6bc666dac8fc2697ff9ba":{"storage":{}},"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b":{"nonce":"0x01","storage":{}}},"pre":{"0x095e7baea6a6c7c4c2dfeb977efac326af552d87":{},"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b":{}},"sealEngine":"NoProof"}})";
+        R"({"name":{"_info":{"comment":"A tesesult","filledwith":"testee5c"},"blocks":[{"blockHeader":{"difficulty":"0x020000","extraData":""},"rlp":"0xf90262f0","transactions":[{"data":"0x","value":"0x0186a0"}],"uncleHeaders":[]}],"genesisBlockHeader":{"number":"0x00"},"genesisRLP":"0xf9c6f04171167ec0c0","lastblockhash":"0x00606595b80acde5","network":"Homestead","postState":{"0x095e7baea6a6c7c4c2dfeb977efac326af552d87":{"storage":{"0x00":"0x02"}},"0x2adc25665018aa1fe0e6bc666dac8fc2697ff9ba":{"storage":{}},"0x8eC33b54fde22a01ff0A15AB8FaF88Ff3697D89e":{"nonce":"0x01","storage":{}}},"pre":{"0x095e7baea6a6c7c4c2dfeb977efac326af552d87":{},"0x8eC33b54fde22a01ff0A15AB8FaF88Ff3697D89e":{}},"sealEngine":"NoProof"}})";
 
     DataObject dObj = ConvertJsoncppStringToData(data);
     BOOST_CHECK(dObj.asJson(0, false) == res);

@@ -131,7 +131,7 @@ DataObject VMTestConverterSuite::doTests(DataObject const& _input, TestSuiteOpti
             bcTestFiller["pre"] = test.Pre().asDataObject();
 
             // Insert sender account
-            FH20 const sender(DataObject("0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b"));
+            FH20 const sender(DataObject("0x8eC33b54fde22a01ff0A15AB8FaF88Ff3697D89e"));
             if (!test.Pre().hasAccount(sender))
             {
                 bcTestFiller["pre"][sender.asString()]["balance"] = "0x7ffffffffffffff0";

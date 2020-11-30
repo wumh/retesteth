@@ -15,9 +15,9 @@
                 // "GeneralStateTests/stPreCompiledContracts",
                 // "GeneralStateTests/stTransactionTest",
                 // "GeneralStateTests/stDebug",
-                // "GeneralStateTests",
+                "GeneralStateTests",
             //    "GeneralStateTests/stExample",
-                "BlockchainTests",
+                // "BlockchainTests",
                 // "BlockchainTests/TransitionTests/bcEIP158ToByzantium",
                 // "BlockchainTests/TransitionTests",
                 // "BlockchainTests/ValidBlocks",
@@ -46,9 +46,9 @@
                 // "--vmtrace",
                 // "--verbosity",
                 // "6",
-                // ">",
-                // "~/2_debug_error.log",
-                // "2>&1",
+                ">",
+                "~/2_debug_error_GeneralStateTests.log",
+                "2>&1",
                 
 
 

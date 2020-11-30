@@ -214,7 +214,7 @@ defsha3(512)
 
 bool sha3(bytesConstRef _input, bytesRef o_output)
 {
-    std::cout << cYellow << "----------------sha3 size is " << _input.size() <<  std::endl;
+    // std::cout << cYellow << "----------------sha3 size is " << _input.size() <<  std::endl;
 	// FIXME: What with unaligned memory?
 	if (o_output.size() != 32)
 		return false;

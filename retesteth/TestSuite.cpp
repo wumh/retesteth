@@ -396,7 +396,7 @@ void TestSuite::runAllTestsInFolder(string const& _testFolder) const
                 ETH_WARNING("Skipping " + file.stem().string() + " because --lowcpu option was specified.\n");
                 continue;
             }
-            std::cout << "executeTest " + file.stem().string() + " emm-------.\n";
+            // std::cout << "executeTest " + file.stem().string() + " emm-------.\n";
             testOutput.showProgress();
             if (threadVector.size() == maxAllowedThreads)
                 joinThreads(threadVector, false);

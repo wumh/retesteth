@@ -175,8 +175,8 @@ BYTES const Transaction::getSignedRLP() const
 dev::RLPStream const Transaction::asRLPStream() const
 {
     dev::RLPStream out;
-    int k_size = k().asString().size();
-    printf("size of k is  ----------------------------------%d\n",k_size);
+    // int k_size = k().asString().size();
+    // printf("size of k is  ----------------------------------%d\n",k_size);
 
     //  if (k_size!=2)
     // {
