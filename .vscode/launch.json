@@ -18,8 +18,8 @@
                 // "GeneralStateTests/stStackTests",
 
                 // "GeneralStateTests/stDebug",
-                "GeneralStateTests",
-            //    "GeneralStateTests/stExample",
+                // "GeneralStateTests",
+               "GeneralStateTests/stExample",
                 // "BlockchainTests",
                 // "BlockchainTests/InvalidBlocks/bcForgedTest",
                 // "GeneralStateTests/stExtCodeHash",
@@ -63,9 +63,9 @@
                 // "--vmtrace",
                 // "--verbosity",
                 // "6",
-                ">",
-                "~/2_debug_error_balance.log",
-                "2>&1",
+                // ">",
+                // "~/2_debug_error_balance.log",
+                // "2>&1",
                 
 
 

@@ -2,6 +2,7 @@
 *.slo
 *.lo
 *.o
+*.out
 
 # Compiled Dynamic libraries
 *.so
@@ -16,7 +17,7 @@
 # VS stuff
 .vscode
 build
-.vscode
+lanuch.json
 ipch
 *.sdf
 *.opensdf
