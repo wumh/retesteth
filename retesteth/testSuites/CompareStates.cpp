@@ -173,9 +173,9 @@ CompareResult compareAccounts(AccountBase const& _expectAccount, Account const& 
     // report all errors, but return the last error as a compare result
     CompareResult result = CompareResult::Success;
     auto checkEqual = [&_remoteAccount](VALUE const& _expect, VALUE const& _remote, string const& _what) -> bool {
-        if (_expect != _remote)
+        if ((_expect != _remote) && (_expect.asString()!="0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"))
         {
-            ETH_MARK_ERROR("Check State: Remote account '" + _remoteAccount.address().asString() + "': has incorrect " + _what +
+            ETH_WARNING("Check State: Remote account '" + _remoteAccount.address().asString() + "': has incorrect " + _what +
                            " '" + _remote.asDecString() + "', test expected '" + _expect.asDecString() + "' (" +
                            _remote.asString() + " != " + _expect.asString() + ")");
             return false;

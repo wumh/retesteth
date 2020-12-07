@@ -66,6 +66,7 @@ string const geth_config = R"({
         "IntrinsicGas" : "intrinsic gas too low",
         "ExtraDataIncorrectDAO" : "bad DAO pro-fork extra-data",
         "InvalidTransactionVRS" : "invalid transaction v, r, s values",
+        "InvalidTransactionGMVRS" : "invalid public key cgo_1",
         "BLOCKHEADER_VALUE_TOOLARGE" : "Blockheader parse error: VALUE  >u256",
         "TRANSACTION_VALUE_TOOLARGE" : "transaction root hash mismatch: have",
         "TRANSACTION_VALUE_TOOSHORT" : "transaction root hash mismatch: have",
