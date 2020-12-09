@@ -1,3 +1,0 @@
-ar: creating ../libcrypto.a
-ar: creating ../libssl.a
-c_rehash: rehashing skipped ('openssl' program not available)
