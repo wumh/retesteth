@@ -82,14 +82,14 @@ void TestBlockchain::generateBlock(
          for (auto const& tr : _block.transactions())
             {
             auto ha = tr.tr().hash();
-            std::cout << "hash for _block is\t" << ha.asString() << std::endl;
+            //std::cout << "hash for _block is\t" << ha.asString() << std::endl;
 
             testTransactionMap[ha] = {spTransaction(new Transaction(tr.tr())), tr.isMarkedInvalid()};
             }
         for (auto const& remoteTr : minedBlock.getCContent().transactions())
         {
             auto ha1 = remoteTr.hash();
-            std::cout << "hash for minedBlock is\t" << ha1.asString() << std::endl;
+            //std::cout << "hash for minedBlock is\t" << ha1.asString() << std::endl;
             if (testTransactionMap.count(ha1))
             {
                 bool isMarkedInvalid = std::get<1>(testTransactionMap.at(remoteTr.hash()));
@@ -175,9 +175,9 @@ GCP_SPointer<EthGetBlockBy> TestBlockchain::mineBlock(
             new EthGetBlockBy((m_session.eth_getBlockByNumber(latestBlockNumber, Request::FULLOBJECTS))));
         _rawRLP = remoteBlock.getCContent().getRLPHeaderTransactions();
     }
-    std::cout << "_trInBlocks=" << remoteBlock.getContent().transactions().size() << std::endl;
-    std::cout << "_trInTest=" << _blockInTest.transactions().size() << std::endl;
-    std::cout << "_trAllowedToFail=" << _blockInTest.invalidTransactionCount() << std::endl;
+    // std::cout << "_trInBlocks=" << remoteBlock.getContent().transactions().size() << std::endl;
+    // std::cout << "_trInTest=" << _blockInTest.transactions().size() << std::endl;
+    // std::cout << "_trAllowedToFail=" << _blockInTest.invalidTransactionCount() << std::endl;
 
     checkTransactions(remoteBlock.getContent().transactions().size(), _blockInTest.transactions().size(),
         _blockInTest.invalidTransactionCount());

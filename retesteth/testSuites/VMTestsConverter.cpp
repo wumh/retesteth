@@ -156,8 +156,9 @@ DataObject VMTestConverterSuite::doTests(DataObject const& _input, TestSuiteOpti
                 expectSection["result"] = test.Expect().asDataObject();
             else
             {
-                ETH_WARNING("VMTest filler missing expect section! Empty section will be used. " +
-                            TestOutputHelper::get().testInfo().errorDebug());
+                auto message = TestOutputHelper::get().testInfo().errorDebug();
+                //ETH_WARNING("VMTest filler missing expect section! Empty section will be used. " +
+                //            message);
                 expectSection["result"] = DataObject(DataType::Object);
             }
             bcTestFiller["expect"].addArrayObject(expectSection);
