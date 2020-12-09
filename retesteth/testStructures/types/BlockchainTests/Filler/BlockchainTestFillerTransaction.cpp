@@ -18,8 +18,8 @@ BlockchainTestFillerTransaction::BlockchainTestFillerTransaction(DataObject cons
         tmpD.removeKey("to");
         // tmpD.removeKey("k");
         tmpD.performModifier(mod_valueToCompactEvenHexPrefixed);
-        if (tmpD.count("k") && _data.count("k"))
-        tmpD["k"] = _data.atKey("k");
+        if (tmpD.count("k") && _data.count("k"))      //因为上一步modify的时候长度过不了
+        tmpD["k"] = _data.atKey("k");        //重置k值
 
         // fix 0x prefix on 'to' key
         DataObject dTo = _data.atKey("to");

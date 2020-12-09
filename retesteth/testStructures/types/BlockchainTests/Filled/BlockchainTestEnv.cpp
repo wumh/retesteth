@@ -32,8 +32,8 @@ BlockchainTestEnv::BlockchainTestEnv(DataObject const& _data)
              {"extraData", {{DataType::String}, jsonField::Required}},
              {"gasLimit", {{DataType::String}, jsonField::Required}},
              {"gasUsed", {{DataType::String}, jsonField::Required}},
-             {"pstotal", {{DataType::String}, jsonField::Optional}},
-             {"psAverage", {{DataType::String}, jsonField::Optional}},
+             {"pstotal", {{DataType::String}, jsonField::Optional}},                    //添加头的数据结构成员
+             {"psAverage", {{DataType::String}, jsonField::Optional}},                   //添加头的数据结构成员
              {"hash", {{DataType::String}, jsonField::Optional}},
              {"mixHash", {{DataType::String}, jsonField::Optional}},
              {"nonce", {{DataType::String}, jsonField::Optional}},
@@ -41,8 +41,8 @@ BlockchainTestEnv::BlockchainTestEnv(DataObject const& _data)
              {"parentHash", {{DataType::String}, jsonField::Required}},
              {"receiptTrie", {{DataType::String}, jsonField::Optional}},
              {"receiptsRoot", {{DataType::String}, jsonField::Optional}},
-             {"tasksRoot", {{DataType::String}, jsonField::Optional}},
-             {"CreditHash", {{DataType::String}, jsonField::Optional}},
+             {"tasksRoot", {{DataType::String}, jsonField::Optional}},                   //添加头的数据结构成员
+             {"CreditHash", {{DataType::String}, jsonField::Optional}},                   //添加头的数据结构成员
              {"stateRoot", {{DataType::String}, jsonField::Required}},
              {"timestamp", {{DataType::String}, jsonField::Required}},
              {"transactionsTrie", {{DataType::String}, jsonField::Optional}},

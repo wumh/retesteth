@@ -188,7 +188,7 @@ inline std::string toCompactHexPrefixed(u256 _val, unsigned _min = 0)
 {
 	return toHexPrefixed(toCompactBigEndian(_val, _min));
 }
-inline std::string toCompactHexPrefixed264(u264 _val, unsigned _min = 0)
+inline std::string toCompactHexPrefixed264(u264 _val, unsigned _min = 0)//为u264类型添加的数据处理方法
 {
 	return toHexPrefixed(toCompactBigEndian(_val, _min));
 }

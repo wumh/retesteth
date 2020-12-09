@@ -1,10 +1,10 @@
 #include <dataObject/ConvertFile.h>
 #include <dataObject/Exception.h>
-#include <iostream> 
+#include <iostream>    //为了输出调试信息
 // Manually construct dataobject from file string content
 // bacuse Json::Reader::parse has a memory leak
 
-using namespace std;
+using namespace std;  //为了输出调试信息
 
 namespace dataobject
 {
@@ -149,7 +149,7 @@ DataObject ConvertJsoncppStringToData(
     auto printDebug = [](string const& _debug) { return "\n\"------\n" + _debug + "\n\"------"; };
     for (size_t i = 0; i < _input.length(); i++)
     {
-        // if(i>2064 && i<2070)
+        // if(i>2064 && i<2070)  //输出调试信息:调试按照排序方式插入boost库有bug
         // {
         // std::cout << i << std::endl;
         // std::cout << printDebug(debug) << std::endl;

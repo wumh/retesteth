@@ -33,8 +33,8 @@ namespace dev
 
 h256 EmptySHA3 = sha3(bytesConstRef());
 h256 EmptyListSHA3 = sha3(rlpList());
-std::string const cYellow = "\x1b[33m";
-std::string const cRed = "\x1b[31m";
+std::string const cYellow = "\x1b[33m";//为了输出调试信息，设置信息颜色为黄
+std::string const cRed = "\x1b[31m";//为了输出调试信息，设置信息颜色为红
 
 namespace keccak
 {
@@ -214,7 +214,7 @@ defsha3(512)
 
 bool sha3(bytesConstRef _input, bytesRef o_output)
 {
-    // std::cout << cYellow << "----------------sha3 size is " << _input.size() <<  std::endl;
+    // std::cout << cYellow << "----------------sha3 size is " << _input.size() <<  std::endl;//输出调试信息：sha3的长度
 	// FIXME: What with unaligned memory?
 	if (o_output.size() != 32)
 		return false;

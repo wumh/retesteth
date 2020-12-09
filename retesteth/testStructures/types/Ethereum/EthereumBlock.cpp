@@ -2,7 +2,7 @@
 #include <libdevcore/CommonIO.h>
 #include <libdevcore/RLP.h>
 //#include <libdevcore/SHA3.h>
-#include <libdevcrypto/Hash.h>
+#include <libdevcrypto/Hash.h>//防止编译错误
 #include <retesteth/EthChecks.h>
 using namespace dev;
 

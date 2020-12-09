@@ -2,7 +2,7 @@
 #include "../../basetypes.h"
 #include <libdevcore/RLP.h>
 #include <retesteth/dataObject/DataObject.h>
-#include "/home/wumh/1/retesteth/libdevcore/FixedHash.h"
+#include "/home/ubuntu/retesteth_release/v0.1/retesteth_release_v0.1/retesteth/libdevcore/FixedHash.h"
 
 using namespace dataobject;
 using namespace test::teststruct;
@@ -32,7 +32,7 @@ struct Transaction : GCP_SPointerBase
     VALUE const& v() const { return m_v.getCContent(); }
     VALUE const& r() const { return m_r.getCContent(); }
     VALUE const& s() const { return m_s.getCContent(); }
-    BYTES const& k() const { return m_k.getCContent(); }
+    BYTES const& k() const { return m_k.getCContent(); }//增加k值
     //BYTES const& k() const { return m_k.getCContent(); }
     FH32 hash() const;
 
@@ -59,7 +59,7 @@ private:
     spVALUE m_v;
     spVALUE m_r;
     spVALUE m_s;
-    spBYTES m_k;
+    spBYTES m_k; ////增加k值
 };
 
 typedef GCP_SPointer<Transaction> spTransaction;

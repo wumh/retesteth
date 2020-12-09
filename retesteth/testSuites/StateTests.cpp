@@ -131,7 +131,7 @@ DataObject FillTestAsBlockchain(StateTestInFiller const& _test)
                     VALUE latestBlockN(session.eth_blockNumber());
                     EthGetBlockBy remoteBlock(session.eth_getBlockByNumber(latestBlockN, Request::FULLOBJECTS));
                     ETH_ERROR_REQUIRE_MESSAGE(
-                        remoteBlock.hasTransaction(trHash), "StateTest::FillTest: TR hash not found in mined block_1!");
+                        remoteBlock.hasTransaction(trHash), "StateTest::FillTest: TR hash not found in mined block_1!"); //原字符串侯加数字以作区分
                     tr.markExecuted();
 
                     // Mining reward
@@ -255,7 +255,7 @@ DataObject FillTest(StateTestInFiller const& _test)
 
                     EthGetBlockBy blockInfo(session.eth_getBlockByNumber(latestBlockN, Request::LESSOBJECTS));
                     ETH_ERROR_REQUIRE_MESSAGE(
-                        blockInfo.hasTransaction(trHash), "StateTest::FillTest: TR hash not found in mined block_2!");
+                        blockInfo.hasTransaction(trHash), "StateTest::FillTest: TR hash not found in mined block_2!"); //加编号以作区分
                     tr.markExecuted();
 
                     if (Options::get().poststate)
@@ -365,7 +365,7 @@ void RunTest(StateTestInFilled const& _test)
                     VALUE latestBlockN(session.eth_blockNumber());
                     EthGetBlockBy blockInfo(session.eth_getBlockByNumber(latestBlockN, Request::LESSOBJECTS));
                     ETH_ERROR_REQUIRE_MESSAGE(
-                        blockInfo.hasTransaction(trHash), "StateTest::RunTest: TR hash not found in mined block_3!");
+                        blockInfo.hasTransaction(trHash), "StateTest::RunTest: TR hash not found in mined block_3!");  //加编号以作区分
                     tr.markExecuted();
 
                     // Validate post state

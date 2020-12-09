@@ -66,7 +66,7 @@ string const geth_config = R"({
         "IntrinsicGas" : "intrinsic gas too low",
         "ExtraDataIncorrectDAO" : "bad DAO pro-fork extra-data",
         "InvalidTransactionVRS" : "invalid transaction v, r, s values",
-        "InvalidTransactionGMVRS" : "invalid public key",
+        "InvalidTransactionGMVRS" : "invalid public key",                                    
         "BLOCKHEADER_VALUE_TOOLARGE" : "Blockheader parse error: VALUE  >u256",
         "TRANSACTION_VALUE_TOOLARGE" : "transaction root hash mismatch: have",
         "TRANSACTION_VALUE_TOOSHORT" : "transaction root hash mismatch: have",
@@ -153,7 +153,7 @@ string const geth_config = R"({
         "RLP_ExpectedInputList_TXDATA_DECODEINTO_BLOCK_EXTBLOCK_TXS0" : "rlp: expected input list for types.txdata, decoding into (types.Block)(types.extblock).Txs[0]"
     }
 })";
-
+//以上本地错误信息匹配geth客户端返回的错误信息
 string const geth_start = R"(#!/bin/sh
 threads=1
 if [ "${1:-0}" -gt 1 ]

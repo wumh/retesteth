@@ -91,7 +91,7 @@ Address dev::toAddress(Address const& _from, u256 const& _nonce)
     return right160(crypto::Hash(rlpList(_from, _nonce)));
 }
 
-Public dev::toPublic(Secret const& _secret)
+Public dev::toPublic(Secret const& _secret)//私钥生成公钥
 {
     if (!g_BCOSConfig.SMCrypto())
     {
@@ -118,7 +118,7 @@ Public dev::toPublic(Secret const& _secret)
     }
 }
 
-Public dev::toPublicCompressed(Secret const& _secret)
+Public dev::toPublicCompressed(Secret const& _secret)//压缩公钥
 {
     // if (!g_BCOSConfig.SMCrypto())
     // {
@@ -156,7 +156,7 @@ Public dev::toPublicCompressed(Secret const& _secret)
         return h512(fromHex(pub));
     // }
 }
-KeyPair KeyPair::create()
+KeyPair KeyPair::create()//生成公私钥对
 {
     while (true)
     {

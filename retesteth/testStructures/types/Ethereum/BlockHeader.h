@@ -61,8 +61,8 @@ private:
     spBYTES m_extraData;
     spVALUE m_gasLimit;
     spVALUE m_gasUsed;
-    spVALUE m_pstotal;
-    spVALUE m_psAverage;
+    spVALUE m_pstotal;                   //添加头的数据结构成员
+    spVALUE m_psAverage;                   //添加头的数据结构成员
     spFH32 m_hash;
     spFH256 m_logsBloom;
     spFH32 m_mixHash;
@@ -70,8 +70,8 @@ private:
     spVALUE m_number;
     spFH32 m_parentHash;
     spFH32 m_receiptsRoot;
-    spFH32 m_tasksRoot;
-    spFH32 m_CreditHash;
+    spFH32 m_tasksRoot;                   //添加头的数据结构成员
+    spFH32 m_CreditHash;                   //添加头的数据结构成员
     spFH32 m_sha3Uncles;
     spFH32 m_stateRoot;
     spVALUE m_timestamp;

@@ -175,6 +175,7 @@ CompareResult compareAccounts(AccountBase const& _expectAccount, Account const& 
     auto checkEqual = [&_remoteAccount](VALUE const& _expect, VALUE const& _remote, string const& _what) -> bool {
         if ((_expect != _remote) )
         {
+            //以下修改将原本的balance     error改成warning
             ETH_WARNING("Check State: Remote account '" + _remoteAccount.address().asString() + "': has incorrect " + _what +
                            " '" + _remote.asDecString() + "', test expected '" + _expect.asDecString() + "' (" +
                            _remote.asString() + " != " + _expect.asString() + ")");
@@ -243,7 +244,7 @@ void compareStates(StateBase const& _stateExpect, State const& _statePost)
             result = accountCompareResult;
     }
     if (result != CompareResult::Success)
-        ETH_ERROR_MESSAGE("CompareStates failed with errors_1: " + CompareResultToString(result));
+        ETH_ERROR_MESSAGE("CompareStates failed with errors_1: " + CompareResultToString(result)); //在原输出字符串后加_1，以作区分
 }
 
 string CompareResultToString(CompareResult res)

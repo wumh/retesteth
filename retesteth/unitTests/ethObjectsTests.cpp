@@ -262,6 +262,7 @@ void testCompareResult(DataObject const& _exp, DataObject const& _post, CompareR
 BOOST_AUTO_TEST_CASE(compareStates_noError)
 {
     DataObject expectData;
+    //以下修改原地址为国密地址
     expectData["0x8eC33b54fde22a01ff0A15AB8FaF88Ff3697D89e"]["balance"] = "0x82123";
     DataObject postData;
     postData["0x8eC33b54fde22a01ff0A15AB8FaF88Ff3697D89e"]["balance"] = "0x82123";

@@ -238,7 +238,7 @@ void TestOutputHelper::printTestExecStats()
     else
     {
         std::lock_guard<std::mutex> lock(g_totalTestsRun);
-        string message = "*NEWLAND* Total Tests Run: " + fto_string(totalTestsRun) + "\n";
+        string message = "*NEWLAND* Total Tests Run: " + fto_string(totalTestsRun) + "\n";//修改输出内容
         if (totalTestsRun > 0)
             ETH_STDOUT_MESSAGE(message);
         else

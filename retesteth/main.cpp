@@ -121,7 +121,7 @@ int main(int argc, const char* argv[])
 	}
 
 	test::Options const& opt = test::Options::get();
-
+    //设置密码算法为国密
     g_BCOSConfig.setUseSMCrypto(true);
     crypto::initSMCrypto();
 

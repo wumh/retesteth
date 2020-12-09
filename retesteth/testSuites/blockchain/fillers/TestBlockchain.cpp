@@ -81,6 +81,7 @@ void TestBlockchain::generateBlock(
         std::map<FH32, testTrInfo> testTransactionMap;
          for (auto const& tr : _block.transactions())
             {
+                //以下两行输出调试信息：块的哈希值
             auto ha = tr.tr().hash();
             //std::cout << "hash for _block is\t" << ha.asString() << std::endl;
 
@@ -88,6 +89,7 @@ void TestBlockchain::generateBlock(
             }
         for (auto const& remoteTr : minedBlock.getCContent().transactions())
         {
+            //以下两行输出调试信息：块的哈希值
             auto ha1 = remoteTr.hash();
             //std::cout << "hash for minedBlock is\t" << ha1.asString() << std::endl;
             if (testTransactionMap.count(ha1))
@@ -175,6 +177,7 @@ GCP_SPointer<EthGetBlockBy> TestBlockchain::mineBlock(
             new EthGetBlockBy((m_session.eth_getBlockByNumber(latestBlockNumber, Request::FULLOBJECTS))));
         _rawRLP = remoteBlock.getCContent().getRLPHeaderTransactions();
     }
+    //输出调试信息：
     // std::cout << "_trInBlocks=" << remoteBlock.getContent().transactions().size() << std::endl;
     // std::cout << "_trInTest=" << _blockInTest.transactions().size() << std::endl;
     // std::cout << "_trAllowedToFail=" << _blockInTest.invalidTransactionCount() << std::endl;

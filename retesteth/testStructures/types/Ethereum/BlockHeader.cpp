@@ -4,7 +4,7 @@
 #include <libdevcore/CommonIO.h>
 #include <libdevcore/RLP.h>
 //#include <libdevcore/SHA3.h>
-#include <libdevcrypto/Hash.h>
+#include <libdevcrypto/Hash.h>//为了编译通过
 #include <retesteth/TestHelper.h>
 #include <retesteth/testStructures/Common.h>
 
@@ -26,8 +26,8 @@ void BlockHeader::fromData(DataObject const& _data)
         m_extraData = spBYTES(new BYTES(_data.atKey("extraData")));
         m_gasLimit = spVALUE(new VALUE(_data.atKey("gasLimit")));
         m_gasUsed = spVALUE(new VALUE(_data.atKey("gasUsed")));
-        m_pstotal = spVALUE(new VALUE(_data.atKey("pstotal")));
-        m_psAverage = spVALUE(new VALUE(_data.atKey("psAverage")));
+        m_pstotal = spVALUE(new VALUE(_data.atKey("pstotal")));                   //添加头的数据结构成员
+        m_psAverage = spVALUE(new VALUE(_data.atKey("psAverage")));                   //添加头的数据结构成员
         if (_data.count("hash"))
             m_hash = spFH32(new FH32(_data.atKey("hash")));
         string const bkey = _data.count("logsBloom") ? "logsBloom" : "bloom";
@@ -50,10 +50,10 @@ void BlockHeader::fromData(DataObject const& _data)
         string const rkey = _data.count("receiptsRoot") ? "receiptsRoot" : "receiptTrie";
         m_receiptsRoot = spFH32(new FH32(_data.atKey(rkey)));
 
-        string const r1key = _data.count("tasksRoot") ? "tasksRoot" : "tasksRoot";
+        string const r1key = _data.count("tasksRoot") ? "tasksRoot" : "tasksRoot";                   //添加头的数据结构成员
         m_tasksRoot = spFH32(new FH32(_data.atKey(r1key)));
 
-        string const r2key = _data.count("CreditHash") ? "CreditHash" : "CreditHash";
+        string const r2key = _data.count("CreditHash") ? "CreditHash" : "CreditHash";                   //添加头的数据结构成员
         m_CreditHash = spFH32(new FH32(_data.atKey(r2key)));
         
         string const ukey = _data.count("sha3Uncles") ? "sha3Uncles" : "uncleHash";
@@ -78,8 +78,8 @@ void BlockHeader::fromData(DataObject const& _data)
              {"extraData", {{DataType::String}, jsonField::Required}},
              {"gasLimit", {{DataType::String}, jsonField::Required}},
              {"gasUsed", {{DataType::String}, jsonField::Required}},
-             {"pstotal", {{DataType::String}, jsonField::Optional}},
-             {"psAverage", {{DataType::String}, jsonField::Optional}},
+             {"pstotal", {{DataType::String}, jsonField::Optional}},                   //添加头的数据结构成员
+             {"psAverage", {{DataType::String}, jsonField::Optional}},                   //添加头的数据结构成员
              {"hash", {{DataType::String}, jsonField::Optional}},
              {"mixHash", {{DataType::String}, jsonField::Optional}},
              {"nonce", {{DataType::String}, jsonField::Optional}},
@@ -88,8 +88,8 @@ void BlockHeader::fromData(DataObject const& _data)
              {"receiptTrie", {{DataType::String}, jsonField::Optional}},
              
              {"receiptsRoot", {{DataType::String}, jsonField::Optional}},
-             {"tasksRoot", {{DataType::String}, jsonField::Optional}},
-             {"CreditHash", {{DataType::String}, jsonField::Optional}},
+             {"tasksRoot", {{DataType::String}, jsonField::Optional}},                   //添加头的数据结构成员
+             {"CreditHash", {{DataType::String}, jsonField::Optional}},                   //添加头的数据结构成员
              {"stateRoot", {{DataType::String}, jsonField::Required}},
              {"timestamp", {{DataType::String}, jsonField::Required}},
              {"transactionsTrie", {{DataType::String}, jsonField::Optional}},
@@ -133,15 +133,15 @@ BlockHeader::BlockHeader(dev::RLP const& _rlp)
     init["stateRoot"] = rlpToString(_rlp[i++]);
     init["transactionsTrie"] = rlpToString(_rlp[i++]);
     init["receiptTrie"] = rlpToString(_rlp[i++]);
-    init["tasksRoot"] = rlpToString(_rlp[i++]);
-    init["CreditHash"] = rlpToString(_rlp[i++]);
+    init["tasksRoot"] = rlpToString(_rlp[i++]);                   //添加头的数据结构成员
+    init["CreditHash"] = rlpToString(_rlp[i++]);                   //添加头的数据结构成员
     init["bloom"] = rlpToString(_rlp[i++]);
     init["difficulty"] = rlpToString(_rlp[i++]);
     init["number"] = rlpToString(_rlp[i++]);
     init["gasLimit"] = rlpToString(_rlp[i++]);
     init["gasUsed"] = rlpToString(_rlp[i++]);
-    init["pstotal"] = rlpToString(_rlp[i++]);
-    init["psAverage"] = rlpToString(_rlp[i++]);
+    init["pstotal"] = rlpToString(_rlp[i++]);                   //添加头的数据结构成员
+    init["psAverage"] = rlpToString(_rlp[i++]);                   //添加头的数据结构成员
    
     init["timestamp"] = rlpToString(_rlp[i++]);
     init["extraData"] = rlpToString(_rlp[i++], 0);
@@ -159,16 +159,16 @@ const DataObject BlockHeader::asDataObject() const
     out["extraData"] = m_extraData.getCContent().asString();
     out["gasLimit"] = m_gasLimit.getCContent().asString();
     out["gasUsed"] = m_gasUsed.getCContent().asString();
-    out["pstotal"] = m_pstotal.getCContent().asString();
-    out["psAverage"] = m_psAverage.getCContent().asString();
+    out["pstotal"] = m_pstotal.getCContent().asString();                   //添加头的数据结构成员
+    out["psAverage"] = m_psAverage.getCContent().asString();                   //添加头的数据结构成员
     out["hash"] = m_hash.getCContent().asString();
     out["mixHash"] = m_mixHash.getCContent().asString();
     out["nonce"] = m_nonce.getCContent().asString();
     out["number"] = m_number.getCContent().asString();
     out["parentHash"] = m_parentHash.getCContent().asString();
     out["receiptTrie"] = m_receiptsRoot.getCContent().asString();
-    out["tasksRoot"] = m_tasksRoot.getCContent().asString();
-    out["CreditHash"] = m_CreditHash.getCContent().asString();
+    out["tasksRoot"] = m_tasksRoot.getCContent().asString();                   //添加头的数据结构成员
+    out["CreditHash"] = m_CreditHash.getCContent().asString();                   //添加头的数据结构成员
 
     
     out["stateRoot"] = m_stateRoot.getCContent().asString();
@@ -181,7 +181,7 @@ const DataObject BlockHeader::asDataObject() const
 const RLPStream BlockHeader::asRLPStream() const
 {
     RLPStream header;
-    header.appendList(19);
+    header.appendList(19);                   //为了添加4个新链新增数据结构成员
 
     header << h256(m_parentHash.getCContent().asString());
     header << h256(m_sha3Uncles.getCContent().asString());
@@ -189,15 +189,15 @@ const RLPStream BlockHeader::asRLPStream() const
     header << h256(m_stateRoot.getCContent().asString());
     header << h256(m_transactionsRoot.getCContent().asString());
     header << h256(m_receiptsRoot.getCContent().asString());
-    header << h256(m_tasksRoot.getCContent().asString());
-    header << h256(m_CreditHash.getCContent().asString());
+    header << h256(m_tasksRoot.getCContent().asString());                   //添加头的数据结构成员
+    header << h256(m_CreditHash.getCContent().asString());                   //添加头的数据结构成员
     header << h2048(m_logsBloom.getCContent().asString());
     header << m_difficulty.getCContent().asU256();
     header << m_number.getCContent().asU256();
     header << m_gasLimit.getCContent().asU256();
     header << m_gasUsed.getCContent().asU256();
-    header << m_pstotal.getCContent().asU256();
-    header << m_psAverage.getCContent().asU256();
+    header << m_pstotal.getCContent().asU256();                   //添加头的数据结构成员
+    header << m_psAverage.getCContent().asU256();                   //添加头的数据结构成员
     header << m_timestamp.getCContent().asU256();
     header << test::sfromHex(m_extraData.getCContent().asString());
     header << h256(m_mixHash.getCContent().asString());

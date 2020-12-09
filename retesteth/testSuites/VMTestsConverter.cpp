@@ -74,7 +74,7 @@ BlockHeader getGenesisTemplate()
     genesisBlockHeader["stateRoot"] = "0xf99eb1626cfa6db435c0836235942d7ccaa935f1ae247d3f1c21e495685f903a";
     genesisBlockHeader["transactionsTrie"] = "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421";
     genesisBlockHeader["uncleHash"] = "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347";
-    
+    //添加新链新增的数据结构成员 并设置默认值
     genesisBlockHeader["pstotal"] = "0x00";
     genesisBlockHeader["psAverage"] = "0x00";
     // genesisBlockHeader["number"] = "0x00";

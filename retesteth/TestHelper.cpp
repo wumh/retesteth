@@ -346,6 +346,7 @@ string replaceCode(string const& _code)
     {
         checkHexHasEvenLength(_code);
         if (Options::get().filltests && _code.size() > 2)
+        //关闭此警告
         auto message = TestOutputHelper::get().testInfo().errorDebug();
             // ETH_WARNING("Filling raw bytecode, please provide the source!"
             //             + message);
