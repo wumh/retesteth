@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/ubuntu/retesteth_release/v0.1/retesteth_release_v0.1/retesteth/build/retesteth/retesteth",
+            "program": "/home/wumh/1/retesteth/build/retesteth/retesteth",
             "args": [
                 "-t",
                 // "GeneralStateTests/stCallCodes",
@@ -48,7 +48,7 @@
                 "--filltests",
                 "--testpath",
                 // "~/tests",
-                "/home/ubuntu/retesteth_release/v0.1/tests_release_v0.1/tests",
+                "~/9-nl/tests",
                 "--clients",
                 "default",
                 // "t8ntool",

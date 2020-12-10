@@ -15,7 +15,7 @@
 # log files
 *.log
 # VS stuff
-.vscode
+/.vscode/
 build
 lanuch.json
 ipch
